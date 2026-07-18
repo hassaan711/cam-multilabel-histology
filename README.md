@@ -1,6 +1,6 @@
 # Understanding CAM Behaviour Under Multi-Label Contamination in Histological Nuclei Classification
 
-**A Cross-Dataset Analysis of Gradient Treatment, Resolution Strategy, Multi-Label Interference, and Gradient-Free Attribution Using DenseNet169 on PanNuke and MoNuSAC 2020**
+**A Cross-Dataset Analysis of Gradient Treatment, Resolution Strategy, Multi-Label Contamination, and Gradient-Free Attribution Using DenseNet169 on PanNuke and MoNuSAC 2020**
 
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue)](https://python.org)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0%2B-orange)](https://pytorch.org)
@@ -16,7 +16,7 @@ This repository contains the full experimental code for a mechanistic study of C
 - Score-CAM (gradient-free, with corrected baseline subtraction) outperforms all gradient-based methods on both datasets
 - All four gradient-based methods show perfect monotonic IoU degradation with label cardinality (Spearman ρ = −1.000)
 - The FPN pyramid main effect reverses on MoNuSAC, a resolution ablation confirms this is caused by variable-size patch resampling, not architecture
-- LayerCAM amplifies multi-label interference relative to GradCAM (Wilcoxon p = 0.009), establishing a precision–robustness trade-off
+- LayerCAM amplifies multi-label contamination relative to GradCAM (Wilcoxon p = 0.009), establishing a precision–robustness trade-off
 - LayerCAM retains 3.7× more spatial signal than GradCAM on misclassified images
 
 ---
@@ -30,7 +30,7 @@ This repository contains the full experimental code for a mechanistic study of C
 │   ├── model.py              # DenseNet169MultiLabel classifier
 │   ├── cam_engine.py         # Gradient-based CAMEngine (all 4 methods)
 │   ├── scorecam_engine.py    # Gradient-free ScoreCAMEngine (corrected)
-│   ├── evaluation.py         # IoU, bootstrap CI, interference analysis
+│   ├── evaluation.py         # IoU, bootstrap CI, contamination analysis
 │   ├── preprocessing.py      # Transforms, inference, overlay utilities
 │   └── monusac_utils.py      # MoNuSAC XML parser and data loading
 │
@@ -213,7 +213,7 @@ If you use this code, please cite:
 
 ```bibtex
 @article{cam_multilabel_histology_2026,
-  title   = {Understanding CAM Behaviour Under Multi-Label Interference in
+  title   = {Understanding CAM Behaviour Under Multi-Label contamination in
              Histological Nuclei Classification},
   journal = {Medical Image Analysis},
   year    = {2026},
