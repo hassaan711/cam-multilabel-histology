@@ -1,4 +1,4 @@
-# Understanding CAM Behaviour Under Multi-Label Interference in Histological Nuclei Classification
+# Understanding CAM Behaviour Under Multi-Label Contamination in Histological Nuclei Classification
 
 **A Cross-Dataset Analysis of Gradient Treatment, Resolution Strategy, Multi-Label Interference, and Gradient-Free Attribution Using DenseNet169 on PanNuke and MoNuSAC 2020**
 
