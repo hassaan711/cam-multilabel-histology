@@ -15,7 +15,7 @@ This repository contains the full experimental code for a mechanistic study of C
 **Key findings:**
 - Score-CAM (gradient-free, with corrected baseline subtraction) outperforms all gradient-based methods on both datasets
 - All four gradient-based methods show perfect monotonic IoU degradation with label cardinality (Spearman ρ = −1.000)
-- The FPN pyramid main effect reverses on MoNuSAC — a resolution ablation confirms this is caused by variable-size patch resampling, not architecture
+- The FPN pyramid main effect reverses on MoNuSAC, a resolution ablation confirms this is caused by variable-size patch resampling, not architecture
 - LayerCAM amplifies multi-label interference relative to GradCAM (Wilcoxon p = 0.009), establishing a precision–robustness trade-off
 - LayerCAM retains 3.7× more spatial signal than GradCAM on misclassified images
 
