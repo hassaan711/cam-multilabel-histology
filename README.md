@@ -213,7 +213,7 @@ If you use this code, please cite:
 
 ```bibtex
 @article{cam_multilabel_histology_2026,
-  title   = {Understanding CAM Behaviour Under Multi-Label contamination in
+  title   = {Understanding CAM Behaviour Under Multi-Label Contamination in
              Histological Nuclei Classification},
   journal = {Medical Image Analysis},
   year    = {2026},
