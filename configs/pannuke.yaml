@@ -1,0 +1,72 @@
+# PanNuke experiment configuration
+# Used by: pannuke_densenet169.ipynb, pannuke_layercam_comparison.ipynb,
+#           pannuke_scorecam.ipynb
+
+dataset:
+  name: PanNuke
+  num_classes: 5
+  class_names:
+    - Neoplastic
+    - NonneoplasticEpi
+    - Inflammatory
+    - Connective
+    - Dead
+  class_display:
+    - "Neoplastic"
+    - "Non-neo. Epi."
+    - "Inflammatory"
+    - "Connective"
+    - "Dead"
+  class_colors_hex:
+    - "#E53935"   # Neoplastic     — red
+    - "#43A047"   # NonneoplasticEpi — green
+    - "#1E88E5"   # Inflammatory   — blue
+    - "#FFB300"   # Connective     — amber
+    - "#8E24AA"   # Dead           — purple
+  img_size: 256
+  fold_dirs:                            # adjust paths as needed
+    1:
+      images: "fold_1/images/fold_1/images.npy"
+      masks:  "fold_1/masks/fold_1/masks.npy"
+    2:
+      images: "fold_2/images/fold_2/images.npy"
+      masks:  "fold_2/masks/fold_2/masks.npy"
+    3:
+      images: "fold_3/images/fold_3/images.npy"
+      masks:  "fold_3/masks/fold_3/masks.npy"
+
+training:
+  seed: 42
+  n_test_hold: 500         # images held out before training
+  batch_size: 16
+  num_epochs: 30
+  dropout_p: 0.30
+  lr_head: 1.0e-4
+  lr_backbone: 1.0e-5
+  weight_decay: 1.0e-4
+  grad_clip: 1.0
+  sigmoid_threshold: 0.50
+  multi_seeds: [0, 1, 42]
+
+cam:
+  iou_thresholds: [0.25, 0.40, 0.50]
+  noise_thr: 0.25
+  alpha_scale: 0.85
+  fpn_cfg:
+    - ["backbone.features.denseblock1", 0.20]
+    - ["backbone.features.denseblock2", 0.35]
+    - ["backbone.features.denseblock4", 0.45]
+  std_cfg:
+    - ["backbone.features.denseblock4", 1.00]
+  scorecam_layer: "backbone.features.denseblock4"
+  scorecam_batch: 64
+  n_bootstrap: 1000
+  n_permute: 1000
+
+paths:
+  output_root: "./outputs"
+  model_path: "./outputs/best_densenet169_pannuke.pth"
+  test_json: "./outputs/test_predictions.json"
+  test_img_dir: "./outputs/test_images"
+  cam_out_dir: "./outputs/layercam_comparison"
+  scorecam_out_dir: "./outputs/scorecam_comparison"

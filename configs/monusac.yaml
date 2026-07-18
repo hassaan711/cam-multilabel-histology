@@ -1,0 +1,58 @@
+# MoNuSAC 2020 experiment configuration
+# Used by: pannuke_monusac_cam.ipynb, monusac_scorecam.ipynb,
+#           monusac_resolution_ablation.ipynb
+
+dataset:
+  name: MoNuSAC2020
+  num_classes: 4
+  class_names:
+    - Epithelial
+    - Lymphocyte
+    - Macrophage
+    - Neutrophil
+  class_colors_hex:
+    - "#E53935"   # Epithelial  — red
+    - "#1E88E5"   # Lymphocyte  — blue
+    - "#FFB300"   # Macrophage  — amber
+    - "#43A047"   # Neutrophil  — green
+  img_size: 256
+  data_root: "MoNuSAC_images_and_annotations"  # adjust path as needed
+
+training:
+  seed: 42
+  test_frac: 0.20          # patient-level test split fraction
+  batch_size: 16
+  num_epochs: 30
+  dropout_p: 0.30
+  lr_head: 1.0e-4
+  lr_backbone: 1.0e-5
+  weight_decay: 1.0e-4
+  grad_clip: 1.0
+  sigmoid_threshold: 0.50
+  multi_seeds: [0, 1, 42]
+
+cam:
+  iou_thresholds: [0.25, 0.40, 0.50]
+  noise_thr: 0.25
+  alpha_scale: 0.85
+  fpn_cfg:
+    - ["backbone.features.denseblock1", 0.20]
+    - ["backbone.features.denseblock2", 0.35]
+    - ["backbone.features.denseblock4", 0.45]
+  std_cfg:
+    - ["backbone.features.denseblock4", 1.00]
+  scorecam_layer: "backbone.features.denseblock4"
+  scorecam_batch: 64
+  n_bootstrap: 1000
+  n_permute: 1000
+
+resolution_ablation:
+  max_native_dim: 512      # cap native resolution to this (preserves aspect ratio)
+                            # reduce to 384 if OOM on 8 GB VRAM
+
+paths:
+  output_root: "./outputs"
+  model_path: "./outputs/monusac_cam_comparison/best_densenet169_monusac.pth"
+  cam_out_dir: "./outputs/monusac_cam_comparison"
+  scorecam_out_dir: "./outputs/monusac_scorecam"
+  ablation_out_dir: "./outputs/monusac_resolution_ablation"

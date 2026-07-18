@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.env
+.venv
+env/
+venv/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Data — do NOT commit large numpy arrays or raw images
+*.npy
+*.npy.gz
+*.tif
+*.svs
+test_images/
+MoNuSAC_images_and_annotations/
+fold_1/
+fold_2/
+fold_3/
+
+# Model checkpoints — do NOT commit (use release assets or Zenodo)
+*.pth
+*.pt
+*.ckpt
+
+# Outputs — results CSVs and figures are reproducible; do not commit
+outputs/
+results/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
